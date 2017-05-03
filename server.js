@@ -9,6 +9,12 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(bodyParser.json());
 
+//var routes = require('./routes')
+
+// ...
+
+//app.use('/', routes)
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -28,21 +34,49 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/server.js', urlencodedParser, function(req, res) {
+app.get('/', function (req, res) {
+    res.send('database connection')
+})
+
+app.post('/login', urlencodedParser, function(req, res) {
 
     var email= req.body.email;
     var password= req.body.password;
 
     sql.connect(connection).then(function() {
         console.log('opening connection');
-        new sql.Request().query("Select * from customer WHERE email='"+email+"'").then(function(recordset) {
-            console.dir(recordset);
-          if(recordset.length>0){
-              res.send(recordset);
+        new sql.Request().query("Select customer_id,first_name,last_name,email from customer where email='"+email+"' and password='"+password+"'").then(function(recordset) {
 
-          }else{
+            if(recordset.length>0){
+                res.send(recordset);
 
-          }
+            }else{
+                res.send(['invalid']);
+
+            }
+        }).catch(function(error) {
+
+        });
+    });
+
+})
+
+app.post('/server.js', urlencodedParser, function(req, res) {
+
+    //var name= req.body.name;
+    //var email= req.body.email;
+    //var password= req.body.password;
+
+    sql.connect(connection).then(function() {
+        console.log('opening connection');
+
+        new sql.Request().query("Select * from customer where name='chishan'").then(function(recordset) {
+            if(recordset.length>0){
+                res.send(recordset);
+
+            }else{
+
+            }
         }).catch(function(error) {
 
         });
@@ -51,28 +85,29 @@ app.post('/server.js', urlencodedParser, function(req, res) {
 })
 
 
+app.post('/register', urlencodedParser, function(req, res) {
 
-/*app.listen(process.env.PORT||80, function() {
-    console.log('Example app listening on port 3000!')
-})*/
+    var first_name=req.body.first_name;
+    var last_name=req.body.last_name;
+    var email= req.body.email;
+    var password= req.body.password;
 
+    sql.connect(connection).then(function() {
+        console.log('opening connection');
+        new sql.Request().query("Insert into customer (first_name,last_name,email,password) values('"+first_name+"','"+last_name+"','"+email+"','"+password+"')").then(function(recordset) {
 
-/*var config = {
+            res.send("success");
 
-    user: 'kasun@trainmate',
-    password: 'Trainmate123',
-    server: 'trainmate.database.windows.net',
-    database: 'trainmate',
-    options: {
-        encrypt: true
-    }
-}
+        }).catch(function(error) {
 
-sql.connect(config).then(function() {
-    console.log('opening connection');
-    new sql.Request().query('Select * from customers').then(function(recordset) {
-        console.dir(recordsent);
-    }).catch(function(error) {
-
+        });
     });
-});*/
+
+
+})
+
+
+
+app.listen(process.env.PORT||80, function() {
+    console.log('Example app listening on port 80!')
+})
