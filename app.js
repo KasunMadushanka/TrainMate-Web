@@ -36,7 +36,7 @@ app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.send('<h1><center>Coming Soon! <br> Site is still under development!! </center></h1> <p><center> go to admin panel use localhost:3000/admin </center> </p>');
+   res.redirect('/views/blog/index');
 });
 
 // error handler
