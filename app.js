@@ -33,28 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', admin);
 app.use('/', blog);
 
-// ************ direct route Files ******************************
-
-
-// ************ set session globe ******************************
-
-app.use(function(req, res, next) {
-    res.locals.username = req.session.user;
-    res.locals.userid = req.session.id;
-    res.locals.userpos = req.session.pos;
-    next();
-});
-
-// ************ set session globe ******************************
-
-
-app.use(function(req,res,next){
-    res.locals.session = req.session;
-    next();
-});
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
