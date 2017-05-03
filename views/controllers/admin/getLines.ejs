@@ -1,0 +1,26 @@
+<script>
+
+var express = require('express');
+var mysql = require('mysql');
+
+
+var conn = mysql.createPool({
+    connectionLimit:50,
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'trainmate'
+});
+
+conn.query("select * from trinline", function (error, results) {
+        if (!!error) {
+            console.log('Error in query');
+        } else {
+            console.log(results);
+                        
+            //res.render('admin/station', data: results);
+        }
+});
+    
+    
+</script>

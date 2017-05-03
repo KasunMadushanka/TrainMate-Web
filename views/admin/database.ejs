@@ -1,0 +1,19 @@
+<%
+
+conn.getConnection(function (error, tempCont) {
+    if (!!error) {
+        tempCont.release();
+        console.log('Error');
+    } else {
+        console.log('Connceted!');
+        tempCont.query("select * from trinline", function (error, results) {
+            tempCont.release();
+            if (!!error) {
+                console.log('Error in query');
+            } else {
+                console.log(results);
+            }
+        });
+    }
+});
+%>

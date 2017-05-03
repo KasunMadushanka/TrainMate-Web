@@ -4,13 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+
 
 // *****************    All Routes Files    ************************************
 var admin = require('./routes/admin');
-var blog = require('./routes/blog');
 
 // *****************    All Routes Files    ************************************
+
+
+var db = require('./views/database');
+
 
 var app = express();
 
@@ -18,12 +21,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -31,13 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ direct route Files ******************************
 app.use('/admin', admin);
-app.use('/', blog);
 
+// ************ direct route Files ******************************
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.send('<h1><center>Coming Soon! <br> Site is still under development!! </center></h1> <p><center> go to admin panel use localhost:3000/admin </center> </p>');
-//    res.redirect('/views/blog/index');
 });
 
 // error handler

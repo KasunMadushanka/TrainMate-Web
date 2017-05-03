@@ -1,16 +1,14 @@
-var express = require('express');
-var mysql = require('mysql');
-
+var sql = require('mssql');
 
 var config = {
-    user: 'kasun@trainmate07',
+
+    user: 'kasun@trainmate',
     password: 'Trainmate123',
-    server: 'trainmate07.database.windows.net',
-    database: 'trainmate07',
+    server: 'trainmate.database.windows.net',
+    database: 'trainmate',
     options: {
         encrypt: true
     }
 }
 
-
-module.exports = config;
+module.exports.db_connection = config
