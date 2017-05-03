@@ -7,56 +7,82 @@
 <% include static/head.ejs%>
     
     
-<body class="pace-top">
-	<!-- begin #page-loader -->
-	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
-	<!-- end #page-loader -->
-	
-	<div class="login-cover">
-	    <div class="login-cover-image"><img src="assets/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" /></div>
-	    <div class="login-cover-bg"></div>
-	</div>
+<body class="pace-top bg-black">
 	<!-- begin #page-container -->
-	<div id="page-container" class="fade">
+	<div id="page-container" class="fade" >
 	    <!-- begin login -->
-        <div class="login login-v2" data-pageload-addclass="animated fadeIn">
-            <!-- begin brand -->
-            <div class="login-header">
-                <div class="brand">
-                    <span class="logo"></span> Color Admin
-                    <small>responsive bootstrap 3 admin template</small>
+        <div class="login login-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image">
+                    <img src="/images/login-bg/bg-9.jpg" data-id="login-cover-image" alt="" />
+                    <div class="login-cover-bg"></div>
+                    <img src="/images/trainMate.png" alt="" width="200" />
+                    
                 </div>
-                <div class="icon">
-                    <i class="fa fa-sign-in"></i>
+                <div class="news-caption">
+                    <center><h4 class="caption-title"><i class="fa fa-train text-success"></i>   |   TrainMate - Train Management System </h4></center>
+                    <p>
+                        
+                    </p>
                 </div>
             </div>
-            <!-- end brand -->
-            <div class="login-content">
-                <form action="/admin/index" method="POST" class="margin-bottom-0">
-                    <div class="form-group m-b-20">
-                        <input type="text" class="form-control input-lg" placeholder="Email Address" />
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content" >
+                <!-- begin login-header -->
+                <div class="login-header">
+                    <div class="brand" style="color:#fff">
+                        <b>Admin Panel</b>
+                        <small style="color:#fff">Controlling Back-End</small>
                     </div>
-                    <div class="form-group m-b-20">
-                        <input type="text" class="form-control input-lg" placeholder="Password" />
+                    <div class="icon">
+                        <i style="color:#fff" class="fa fa-sign-in"></i>
                     </div>
-                    <div class="checkbox m-b-20">
-                        <label>
-                            <input type="checkbox" /> Remember Me
-                        </label>
-                    </div>
-                    <div class="login-buttons">
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
-                    </div>
-                    <div class="m-t-20">
-                        Not a member yet? Click <a href="#">here</a> to register.
-                    </div>
-                </form>
+                </div>
+                <!-- end login-header -->
+                <!-- begin login-content -->
+                <div class="login-content">
+                    <form action="/admin/index" method="POST" class="margin-bottom-0">
+                        <div class="form-group m-b-15">
+                            <input type="text" class="form-control input-lg" name="email" placeholder="User Name" />
+                        </div>
+                        <div class="form-group m-b-15">
+                            <input type="password" class="form-control input-lg" name="pass" placeholder="Password" />
+                        </div>
+                        <div class="checkbox m-b-30">
+                            <label style="color:#fff">
+                                <input type="checkbox" name="cookie" /> Remember Me
+                            </label>
+                        </div>
+                        <div class="login-buttons">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign mevvghvgh in</button>
+                        </div>
+                        <div class="m-t-20 m-b-40 p-b-40" style="color:#fff">
+                            Don't have an Account? Contact the Developers.
+                        </div>
+                        <div class="note note-danger" style="display:<%= msg %>">
+								<center><h4>Credentials are Wrong!</h4></center>
+								<p>
+								    Something missing in your email address or password! Please check the credentials again. Otherwise please contact
+                                    Cybersoft Developers!!
+                                </p>
+						</div>
+                        
+                        
+                        <hr />
+                        <p class="text-center" style="color:#fff">
+                            &copy; All Right Reserved 2017<br>
+                            <img src="/images/logo-GP.png" alt="" width="400" />
+                    
+                        </p>
+                    </form>
+                </div>
+                <!-- end login-content -->
             </div>
+            <!-- end right-container -->
         </div>
         <!-- end login -->
-        
-        
-        
         
 	</div>
 	<!-- end page container -->
@@ -68,7 +94,6 @@
 	<script>
 		$(document).ready(function() {
 			App.init();
-			LoginV2.init();
 		});
 	</script>
 	<script>
