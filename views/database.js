@@ -1,25 +1,14 @@
-var express = require('express');
-var mssql = require('mssql');
+var sql = require('mssql');
 
+var config = {
 
-/*var conn = mysql.createPool({
-    multipleStatements: true,
-    connectionLimit:50,
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'trainmate'
-});*/
-
-var conn = {
-    user: 'kasun@trainmate073',
+    user: 'kasun@trainmate',
     password: 'Trainmate123',
-    server: 'trainmate07.database.windows.net',
-    database: 'trainmate07',
+    server: 'trainmate.database.windows.net',
+    database: 'trainmate',
     options: {
         encrypt: true
     }
 }
 
-
-module.exports = conn;
+module.exports.db_connection = config
