@@ -12,8 +12,8 @@ router.get('/index', function (req, res, next) {
     res.render('admin/index');
 });
 
-router.get('/images/train.png', function (req, res, next) {
-    res.render('admin/images/train.png');
+router.get('/train.png', function (req, res, next) {
+    res.render('admin/train.png');
 });
 
 router.get('/contributors', function (req, res, next) {
